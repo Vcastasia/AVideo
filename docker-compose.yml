@@ -10,20 +10,20 @@ services:
     environment:
       DB_MYSQL_HOST: "database"
       DB_MYSQL_PORT: 3306
-      DB_MYSQL_NAME: "avideo"
-      DB_MYSQL_USER: "avideo"
-      DB_MYSQL_PASSWORD: "avideo"
-      SERVER_NAME: "localhost"
+      DB_MYSQL_NAME: "vcast"
+      DB_MYSQL_USER: "vcast"
+      DB_MYSQL_PASSWORD: "Vcast123"
+      SERVER_NAME: "203.198.185.130"
       ENABLE_PHPMYADMIN: "yes"
       CREATE_TLS_CERTIFICATE: "yes"
       TLS_CERTIFICATE_FILE: "/etc/apache2/ssl/localhost.crt"
       TLS_CERTIFICATE_KEY: "/etc/apache2/ssl/localhost.key"
-      CONTACT_EMAIL: "admin@localhost"
-      SYSTEM_ADMIN_PASSWORD: "password"
-      WEBSITE_TITLE: "AVideo"
+      CONTACT_EMAIL: "support@vcast.net"
+      SYSTEM_ADMIN_PASSWORD: "Vcast123"
+      WEBSITE_TITLE: "VCAST Content Management Server"
       MAIN_LANGUAGE: "en_US"
     volumes:
-      - "./var/www/avideo:/var/www/avideo"
+      - "./var/www/vcms:/var/www/vcms"
     depends_on:
       - database
       - phpmyadmin
@@ -34,12 +34,12 @@ services:
     image: "phpmyadmin/phpmyadmin"
     restart: "unless-stopped"
     environment:
-      PMA_ABSOLUTE_URI: "https://localhost/phpmyadmin"
-      PMA_HOST: "database"
+      PMA_ABSOLUTE_URI: "https://192.168.0.5/phpmyadmin"
+      PMA_HOST: "vcast"
       PMA_PORT: 3306
-      PMA_CONTROLUSER: "avideo"
-      PMA_CONTROLPASS: "avideo"
-      PMA_PMADB: "avideo"
+      PMA_CONTROLUSER: "vcast"
+      PMA_CONTROLPASS: "Vcast123"
+      PMA_PMADB: "vcast"
       HIDE_PHP_VERSION: "true"
     depends_on:
       - database
@@ -52,9 +52,9 @@ services:
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: "yes"
       MYSQL_INITDB_SKIP_TZINFO: 1
-      MYSQL_DATABASE: "avideo"
-      MYSQL_USER: "avideo"
-      MYSQL_PASSWORD: "avideo"
+      MYSQL_DATABASE: "vcast"
+      MYSQL_USER: "vcast"
+      MYSQL_PASSWORD: "Vcast123"
     volumes:
       - ./.compose/db:/var/lib/mysql
     networks:
